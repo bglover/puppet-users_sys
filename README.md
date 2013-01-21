@@ -20,13 +20,21 @@ Including this module will allow the following hiera objects to be used, but non
 {
   "users_sys::users" : [],
   "users_sys::groups" : [],
-  "users_sys::user_defaults" : { localuser_stuff_here },
-  "users_sys::group_defaults" : { localuser_definition_here },
+  "users_sys::user_defaults" : { localuser_defaults_here },
+  "users_sys::group_defaults" : { localgroup_defaults_here },
   "users_sys::users_settings" : { localuser_definition_here },
   "users_sys::groups_settings" : { localgroup_definition_here }
 }
 ```
-Users and groups are generated across the hierachy. Pretty sure the lowest defined for a host is the one that will get used. 
+Users and groups are generated across the hierachy. Pretty sure the lowest defined for a host is the one that will get used. Defaults are just a hash of values to be set as the defaults for all items in users/groups_settings.
+
+```javascript
+{
+  "users_sys::user_defaults" : {
+    "comment" : "default comment"
+  }
+}
+```
 
 ## defined type localuser
 ```javascript
