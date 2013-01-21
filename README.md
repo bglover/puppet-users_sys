@@ -35,6 +35,10 @@ Users and groups are generated across the hierachy. Pretty sure the lowest defin
   }
 }
 ```
+#### Passwords
+Passwords are set via the hash and ONLY if no password is set. My suggestion is to set both the password and the expiry (to a date in the past) in user_defaults, assuming that you use SSH keys for access provides a simple vaguely secure method of creating initial users passwords. If you have a problem storing a default password hash in puppet, I suggest looking at the hiera_gpg backend.
+
+I will probably expand this in the future to be fancier as I fit some better security needs. 
 
 ## defined type localuser
 ```javascript
