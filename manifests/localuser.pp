@@ -46,7 +46,7 @@ define users_sys::localuser (
         comment    => $comment,
         expiry     => $expiry,
         uid        => $uid,
-        gid        => $gid,
+        gid        => $gid,  
         groups     => $groups,
         home       => $home,
         managehome => $managehome,

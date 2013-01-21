@@ -20,10 +20,10 @@ Including this module will allow the following hiera objects to be used, but non
 {
   "users_sys::users" : [],
   "users_sys::groups" : [],
-  "users_sys::user_defaults" : { localuser -uid, -gid },
-  "users_sys::group_defaults" : { localgroup -gid" },
-  "users_sys::users_settings" : { localuser definition here },
-  "users_sys::groups_settings" : { localgroup definition here }
+  "users_sys::user_defaults" : { localuser_stuff_here },
+  "users_sys::group_defaults" : { localuser_definition_here },
+  "users_sys::users_settings" : { localuser_definition_here },
+  "users_sys::groups_settings" : { localgroup_definition_here }
 }
 ```
 Users and groups are generated across the hierachy. Pretty sure the lowest defined for a host is the one that will get used. 
@@ -54,6 +54,15 @@ Users and groups are generated across the hierachy. Pretty sure the lowest defin
     "gid" : ""
   }
 }
+```
+## custom function subtract_array
+Simple, yeah, I know. 
+```ruby
+module Puppet::Parser::Functions
+  newfunction(:subtract_array, :type => :rvalue) do |args|
+    args[0] - args[1]
+  end
+end
 ```
 
 
