@@ -55,7 +55,7 @@ define users_sys::localuser (
         require    => Group[$name]
       }
       if ($password != undef) {
-        exec { "usermod -p \'${password}\' ${name}":
+        exec { "usermod -p \'${password}\' ${name} && chage -d 0 ${name}":
           path    => '/usr/sbin:/sbin:/usr/bin:/bin',
           unless  => "test ! \"$(passwd -S ${name} | cut -d ' ' -f2)\" = \"${lockstatus}\"",
           require => User[$name]
