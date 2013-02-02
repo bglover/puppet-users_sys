@@ -5,7 +5,7 @@ seeks to manage users, groups and their local and remote access. All my classes 
 defined as all my manifests are done in modules. Its called users_sys as opposed to
 users_ftp or users_smb, etc. 
 
-Also, I like JSON and I'm keeping a firm code/data split, so expect configurations purely as JSON.
+Also, I like JSON and Im keeping a firm code/data split, so expect configurations purely as JSON.
 ## class users_sys
 
 Assuming your site.pp consists of hiera_include('classes'), how to use:
@@ -26,7 +26,16 @@ Including this module will allow the following hiera objects to be used, but non
   "users_sys::groups_settings" : { localgroup_definition_here }
 }
 ```
-Users and groups are generated across the hierachy. Pretty sure the lowest defined for a host is the one that will get used. Defaults are just a hash of values to be set as the defaults for all items in users/groups_settings.
+Users and groups are generated across the hierachy. Pretty sure the lowest defined for a host is the
+one that will get used. Defaults are just a hash of values to be set as the defaults for all items
+in users/groups_settings. Im using create_resouces() for this so defaults are hash of default
+localuser and localgroup attributes, and settings are hashes of hashes of localuser and localgroup attributes. 
+
+So to make all your users have a comment it would be:
+"users_sys::user_defaults" : { "comment" : "lulzers", "shell" : "/sbin/lulzshell" } 
+
+while if you didnt like little bobby you could set: 
+"users_sys:users_settings" : { "littlebobby" : { "group" : "shadowbanned" } }
 
 ```javascript
 {
