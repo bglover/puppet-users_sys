@@ -63,6 +63,7 @@ I will probably expand this in the future to be fancier as I fit some better sec
     "password" : "", # Password Hash
     "ssh_authorized_key" : "",
     "ssh_authorized_key_type" : "",
+    "ssh_authorized_key_options" : "" #  Multiple values should be specified as an array
   }
 }
 ```

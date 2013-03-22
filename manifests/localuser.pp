@@ -12,7 +12,8 @@ define users_sys::localuser (
   $system = false,
   $uid = undef,
   $ssh_authorized_key = undef,
-  $ssh_authorized_key_type = 'ssh-rsa' ) {
+  $ssh_authorized_key_type = 'ssh-rsa',
+  $ssh_authorized_key_options = undef ) {
 
   case $::osfamily {
     Debian: {
@@ -67,6 +68,7 @@ define users_sys::localuser (
           key     => $ssh_authorized_key,
           type    => $ssh_authorized_key_type,
           user    => $name,
+          options => $ssh_authorized_key_type_options,
           require => User[$name]
         }
       }
